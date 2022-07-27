@@ -140,41 +140,40 @@ def positive_finder(dataframe, col):
         return None
     return chain_vals
 
+def chain(dataframe, col):
+    global used_list
+    used_list.append(col)
+    arr = positive_finder(dataframe, col)
+    print(used_list)
+    if arr is not None:
+        for i in arr[0]:
+            if i not in used_list:
+                chain(dataframe, i)
+    else:
+        for j in range(len(dataframe)):
+            if j not in used_list:
+                chain(dataframe, j)
 
-def feedback(dataframe, arr):
-    i=0
-    while i < len(arr[0]):
-        arr = positive_finder(dataframe, arr[0][i])
-        print(arr)
-        if arr is None:
-            for j in range(len(dataframe)):
-                if j not in used_list:
-                    arr = positive_finder(dataframe, j)
-                    used_list.append(j)
-                    feedback(dataframe, arr)
-        elif arr[0][i] not in used_list:
-            used_list.append(arr[0][i])
-            feedback(dataframe, arr)
-            i+=1
-        else:
-            i+=1
+a = 1
+def main(dataframe, a):
+    global used_list
+    i = 0
+    arr = positive_finder(dataframe, a)
+    if arr is None:
+        a+=1
+        main(dataframe, a)
+    else:
+        used_list.append(a)
+        for col in arr[0]:
+            chain(dataframe, col)
 
-
-def main(dataframe):
-    arr = positive_finder(dataframe, 1)
-    used_list.append(1)
-    print(arr)
-    i=0
-    while i < len(arr[0]):
-        feedback(dataframe, arr)
-        i+=1
 
 
 df = df_igu
 print(df)
 percentage_dataframe = yuzde_df(df)
-print(percentage_dataframe)
 
-print(main(percentage_dataframe))
+main(percentage_dataframe, a)
+
 stop = timeit.default_timer()
 print('Time: ', stop - start)
