@@ -3,7 +3,8 @@ import sys
 import pandas as pd
 import os
 import timeit
-sum = 0
+used_list = []
+sys.setrecursionlimit(20000)
 counter = 0
 start = timeit.default_timer()
 
@@ -39,6 +40,7 @@ df_doktorlar = df_orsa[df_orsa["SEVİYE"] == "BOŞ"]
 # Çalışan veri tablosundan görevi iş güvenlik uzmanı olanları ayır farklı dataframe'e ata
 df_igu = df_orsa[df_orsa["SEVİYE"] != "BOŞ"]
 
+
 # Kişi index'ine göre saat puanı hesabı
 def saat_hesabi(kisi):
     kisi_saat = kisi["kisi_saat"]
@@ -46,6 +48,7 @@ def saat_hesabi(kisi):
     Y = (1 + X) ** 2
     saat_puan = 250 / Y
     return saat_puan
+
 
 # Kişi index'ine göre mesafe puanı hesabı
 def mesafe_hesabi(kisi):
@@ -61,6 +64,7 @@ def mesafe_hesabi(kisi):
     else:
         return 250
 
+
 # Kişi index'ine göre uzmanlık puanı hesabı
 def uzmanlik_hesabi(kisi):
     seviye = kisi["seviye"]
@@ -71,6 +75,7 @@ def uzmanlik_hesabi(kisi):
     uzmanlik_puan = 500 - 150 * abs(fark)
     return uzmanlik_puan
 
+
 # Kişi index'ine göre toplam puan hesabı
 def puan_hesabi(kisi):
     saat_puan = saat_hesabi(kisi)
@@ -78,16 +83,18 @@ def puan_hesabi(kisi):
     mesafe_puan = mesafe_hesabi(kisi)
     return saat_puan + uzmanlik_puan + mesafe_puan
 
+
 # diger_kisi'ye ana_kisi'nin "gorev_yeri" ve "isyeri_seviye"'sini verirsek çıkan yüzdelik puan hesabı
-def puan_karsilastirma(ana_kisi, diger_kisi):
-    onceki_puan = puan_hesabi(diger_kisi)
-    diger_kisi["gorev_yeri"] = ana_kisi["gorev_yeri"]
-    diger_kisi["isyeri_seviye"] = ana_kisi["isyeri_seviye"]
-    sonraki_puan = puan_hesabi(diger_kisi)
-    return (sonraki_puan-onceki_puan)*100/onceki_puan
+def puan_karsilastirma(ana_kisi_f, diger_kisi_f):
+    onceki_puan = puan_hesabi(diger_kisi_f)
+    diger_kisi_f["gorev_yeri"] = ana_kisi_f["gorev_yeri"]
+    diger_kisi_f["isyeri_seviye"] = ana_kisi_f["isyeri_seviye"]
+    sonraki_puan = puan_hesabi(diger_kisi_f)
+    return (sonraki_puan - onceki_puan) * 100 / onceki_puan
+
 
 # Puan karsilaştırmadan gelen yüzdelik verilerin DataFrame'e aktarımı
-def yuzde_DF(p_table):
+def yuzde_df(p_table):
     global counter
     karsilastirma_listoflists = []
     kisi_index = 0
@@ -111,99 +118,63 @@ def yuzde_DF(p_table):
             kisi_index_ += 1
             karsilastirma_list.append(puan_karsilastirma(ana_kisi, diger_kisi))
             counter += 1
-            if counter%1000 == 0:
+            if counter % 1000 == 0:
                 print("Total Operations =", counter)
         karsilastirma_listoflists.append(karsilastirma_list)
     return pd.DataFrame(karsilastirma_listoflists)
 
-def chain(main_DF):
-    chain_points = []
-    total_point = 0
-    i=0
-    chain = [0] * len(main_DF)
-    while i < len(main_DF):
-        yuzde_farki = 0
-        j=0
-        used_list = []
-        while j <len(main_DF):
-            if main_DF[j][i] > yuzde_farki and j not in used_list:
-                yuzde_farki = main_DF[j][i]
-                chain[i] = j
-                used_list.append(j)
-                total_point += yuzde_farki
 
-            elif j == len(main_DF)-1:
-                if main_DF[j][i] > yuzde_farki:
-                    yuzde_farki = main_DF[j][i]
-                    chain[i] = j
-                    used_list.append(j)
-                    total_point += yuzde_farki
-                    j+=1
-            j+=1
-        i+=1
-    chain_points.append(chain)
-    chain_points.append(total_point)
-    return chain_points
-
-def chain_long(main_DF):
-    chains_points = []
-    all_chains = []
-    all_points = []
-    temp_chain = [0]*len(main_DF)
-    temp_point = 0
-    point = 0
-    i=0
-    while i < len(main_DF):
-        j=0
-        point = 0
-        while j < len(main_DF):
-            if point < main_DF[j][i]:
-                point = main_DF[j][i]
-                temp_chain[i] = j
-            j += 1
-        temp_point += point
-        i+=1
-    all_chains.append(temp_chain)
-    all_points.append(temp_point)
-    chains_points.append(all_chains)
-    chains_points.append(all_points)
+def positive_finder(dataframe, col):
+    chain_vals = []
+    chain = []
+    vals = []
     i = 0
-    max = 0
-    max_chain = []
-    return_chain_points = []
-    while i < len(chains_points[1]):
-        max = chains_points[1][i]
-        max_chain = chains_points[0][i]
-        return_chain_points.append(max_chain)
-        return_chain_points.append(max)
+    while i < len(dataframe[col]):
+        if dataframe[col][i] > 0:
+            vals.append(dataframe[col][i])
+            chain.append(i)
+        i += 1
+    chain_vals.append(chain)
+    chain_vals.append(vals)
+    if not chain:
+        return None
+    return chain_vals
+
+
+def feedback(dataframe, arr):
+    i=0
+    while i < len(arr[0]):
+        arr = positive_finder(dataframe, arr[0][i])
+        print(arr)
+        if arr is None:
+            for j in range(len(dataframe)):
+                if j not in used_list:
+                    arr = positive_finder(dataframe, j)
+                    used_list.append(j)
+                    feedback(dataframe, arr)
+        elif arr[0][i] not in used_list:
+            used_list.append(arr[0][i])
+            feedback(dataframe, arr)
+            i+=1
+        else:
+            i+=1
+
+
+def main(dataframe):
+    arr = positive_finder(dataframe, 1)
+    used_list.append(1)
+    print(arr)
+    i=0
+    while i < len(arr[0]):
+        feedback(dataframe, arr)
         i+=1
-    return return_chain_points
-
-
 
 
 df = df_igu
-df.reset_index(inplace=True)
-main_DF = yuzde_DF(df)
-print(main_DF, main_DF.values.sum())
-while True:
-    points_list = chain_long(main_DF)
-    chain_ = points_list[0]
-    i=0
-    index_location = [0]*2
-    while i < len(main_DF):
-        index_location[1] = chain_[i]
-        gy_cache = df.loc[index_location[1], "GÖREV YERİ"]
-        s_cache = df.loc[index_location[1], "İŞYERİ"]
-        df.loc[index_location[1], "GÖREV YERİ"] = df.loc[i, "GÖREV YERİ"]
-        df.loc[index_location[1], "İŞYERİ"] = df.loc[i, "İŞYERİ"]
-        df.loc[i, "GÖREV YERİ"] = gy_cache
-        df.loc[i, "İŞYERİ"] = s_cache
-        i+=1
-    main_DF = yuzde_DF(df)
-    print(main_DF, main_DF.values.sum())
-    if int(sum) == int(points_list[1]):
-        continue
-    sum = points_list[1]
+print(df)
+percentage_dataframe = yuzde_df(df)
+print(percentage_dataframe)
+
+print(main(percentage_dataframe))
 stop = timeit.default_timer()
 print('Time: ', stop - start)
