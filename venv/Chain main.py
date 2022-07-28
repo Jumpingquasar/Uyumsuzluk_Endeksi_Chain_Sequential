@@ -6,6 +6,8 @@ import timeit
 sys.setrecursionlimit(20000)
 counter = 0
 start = timeit.default_timer()
+chains = []
+total = 0
 
 pd.options.mode.chained_assignment = None  # default='warn'
 
@@ -125,36 +127,44 @@ def yuzde_df(p_table):
 
 def positive_finder(dataframe, col):
     chain_vals = []
-    chain = []
+    positive_chain = []
     vals = []
     i = 0
     while i < len(dataframe[col]):
         if dataframe[col][i] > 0:
             vals.append(dataframe[col][i])
-            chain.append(i)
+            positive_chain.append(i)
         i += 1
-    chain_vals.append(chain)
+    chain_vals.append(positive_chain)
     chain_vals.append(vals)
-    if not chain:
+    if not positive_chain:
         return None
     return chain_vals
 
 
-def chain(dataframe, col, current_chain, used_list):
+def chain(dataframe, col, current_chain, used_list, total):
     used_list.append(col)
     arr = positive_finder(dataframe, col)
-    print(current_chain)
     if arr is not None:
         for i in arr[0]:
             if i not in used_list:
                 current_chain.append(i)
-                chain(dataframe, i, current_chain, used_list)
+                index_ = arr[0].index(i)
+                total += arr[1][index_]
+                print(current_chain)
+                chain(dataframe, i, current_chain, used_list, total)
+                chains.append(current_chain)
+                chains.append(total)
+                current_chain.pop(-1)
+                used_list.pop(-1)
     else:
         current_chain.append(None)
         for j in range(len(dataframe)):
             if j not in used_list:
                 current_chain.append(j)
-                chain(dataframe, j, current_chain, used_list)
+                print(current_chain)
+                chain(dataframe, j, current_chain, used_list, total)
+
 
 
 a = 0
@@ -163,6 +173,7 @@ a = 0
 def main(dataframe, a):
     i = 0
     arr = positive_finder(dataframe, a)
+    total = 0
     if arr is None:
         a+=1
         main(dataframe, a)
@@ -170,7 +181,11 @@ def main(dataframe, a):
         for col in arr[0]:
             current_chain = [a, col]
             used_list = [a]
-            chain(dataframe, col, current_chain, used_list)
+            index_ = arr[0].index(col)
+            total += arr[1][index_]
+            print(current_chain)
+            chain(dataframe, col, current_chain, used_list, total)
+
 
 
 df = df_igu
