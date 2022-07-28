@@ -139,6 +139,7 @@ df.reset_index(inplace=True)
 print(main_DF, main_DF.values.sum())
 i = 0
 while True:
+    i = 0
     while i < len(main_DF):
         index_location = yer_bulucu(main_DF, i)
         gy_cache = df.loc[index_location[1], "GÖREV YERİ"]

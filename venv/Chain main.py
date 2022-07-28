@@ -162,6 +162,8 @@ def chain(dataframe, col, current_chain, used_list, total):
         for j in range(len(dataframe)):
             if j not in used_list:
                 current_chain.append(j)
+                chains.append(current_chain)
+                chains.append(total)
                 print(current_chain)
                 chain(dataframe, j, current_chain, used_list, total)
 

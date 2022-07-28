@@ -113,7 +113,7 @@ def yuzde_DF(p_table):
             diger_kisi["kisi_saat"] = p_table.iloc[kisi_index_]["ÇALIŞILAN SAAT"]
             diger_kisi["gorevi"] = p_table.iloc[kisi_index_]["GÖREVİ"]
             kisi_index_ += 1
-            karsilastirma_list.append(puan_karsilastirma(ana_kisi, diger_kisi))
+            karsilastirma_list.append(puan_karsilastirma(ana_kisi, diger_kisi)-puan_karsilastirma(diger_kisi, ana_kisi))
             counter += 1
             if counter%1000 == 0:
                 print("Total Operations =", counter)
@@ -138,7 +138,7 @@ def intermediate_yuzde_DF(main_DF, p_table, index_location):
         diger_kisi["isyeri_seviye"] = p_table.iloc[i]["İŞYERİ"]
         diger_kisi["kisi_saat"] = p_table.iloc[i]["ÇALIŞILAN SAAT"]
         diger_kisi["gorevi"] = p_table.iloc[i]["GÖREVİ"]
-        main_DF.iloc[row][i] = puan_karsilastirma(ana_kisi, diger_kisi)
+        main_DF.iloc[row][i] = puan_karsilastirma(ana_kisi, diger_kisi)-puan_karsilastirma(diger_kisi, ana_kisi)
         i += 1
         counter += 1
         if counter % 1000 == 0:
@@ -177,11 +177,13 @@ def yer_bulucu(main_DF, i):
 
     return buyuk_cache
 
+count = 0
 df = df_igu
 main_DF = yuzde_DF(df)
 df.reset_index(inplace=True)
 print(main_DF, main_DF.values.sum())
 while True:
+    i = 0
     while i < len(main_DF):
         index_location = yer_bulucu(main_DF, i)
         gy_cache = df.loc[index_location[1], "GÖREV YERİ"]
