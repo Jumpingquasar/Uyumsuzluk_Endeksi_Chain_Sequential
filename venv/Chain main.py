@@ -3,7 +3,6 @@ import sys
 import pandas as pd
 import os
 import timeit
-used_list = []
 sys.setrecursionlimit(20000)
 counter = 0
 start = timeit.default_timer()
@@ -140,33 +139,38 @@ def positive_finder(dataframe, col):
         return None
     return chain_vals
 
-def chain(dataframe, col):
-    global used_list
+
+def chain(dataframe, col, current_chain, used_list):
     used_list.append(col)
     arr = positive_finder(dataframe, col)
-    print(used_list)
+    print(current_chain)
     if arr is not None:
         for i in arr[0]:
             if i not in used_list:
-                chain(dataframe, i)
+                current_chain.append(i)
+                chain(dataframe, i, current_chain, used_list)
     else:
+        current_chain.append(None)
         for j in range(len(dataframe)):
             if j not in used_list:
-                chain(dataframe, j)
+                current_chain.append(j)
+                chain(dataframe, j, current_chain, used_list)
 
-a = 1
+
+a = 0
+
+
 def main(dataframe, a):
-    global used_list
     i = 0
     arr = positive_finder(dataframe, a)
     if arr is None:
         a+=1
         main(dataframe, a)
     else:
-        used_list.append(a)
         for col in arr[0]:
-            chain(dataframe, col)
-
+            current_chain = [a, col]
+            used_list = [a]
+            chain(dataframe, col, current_chain, used_list)
 
 
 df = df_igu
