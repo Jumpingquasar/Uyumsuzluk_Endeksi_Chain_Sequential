@@ -119,7 +119,7 @@ def yuzde_DF(p_table):
         karsilastirma_listoflists.append(karsilastirma_list)
     return pd.DataFrame(karsilastirma_listoflists)
 
-
+#Verilen column içinde pozitif veri listesi al
 def yer_bulucu(main_DF, i):
     buyuk_cache = [0, 0, 0]
     j = 0
@@ -133,6 +133,7 @@ def yer_bulucu(main_DF, i):
 
     return buyuk_cache
 
+# Ana fonksiyon
 df = df_igu
 main_DF = yuzde_DF(df)
 df.reset_index(inplace=True)

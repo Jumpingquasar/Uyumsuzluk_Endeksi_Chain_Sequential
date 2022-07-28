@@ -124,7 +124,7 @@ def yuzde_df(p_table):
         karsilastirma_listoflists.append(karsilastirma_list)
     return pd.DataFrame(karsilastirma_listoflists)
 
-
+# Verilen column içinde pozitif verileri ve puanlarını ver
 def positive_finder(dataframe, col):
     chain_vals = []
     positive_chain = []
@@ -141,7 +141,7 @@ def positive_finder(dataframe, col):
         return None
     return chain_vals
 
-
+# Chain self-feeding fonksiyonu. Dalları çıkaran ana fonksiyon
 def chain(dataframe, col, current_chain, used_list, total):
     used_list.append(col)
     arr = positive_finder(dataframe, col)
@@ -171,7 +171,7 @@ def chain(dataframe, col, current_chain, used_list, total):
 
 a = 0
 
-
+# Zincirlerin başlangıç noktası
 def main(dataframe, a):
     i = 0
     arr = positive_finder(dataframe, a)
@@ -189,7 +189,7 @@ def main(dataframe, a):
             chain(dataframe, col, current_chain, used_list, total)
 
 
-
+# Başlangıç
 df = df_igu
 print(df)
 percentage_dataframe = yuzde_df(df)
