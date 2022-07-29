@@ -3,7 +3,7 @@ import sys
 import pandas as pd
 import os
 import timeit
-sys.setrecursionlimit(20000)
+import numpy as np
 counter = 0
 start = timeit.default_timer()
 chains = []
@@ -142,62 +142,45 @@ def positive_finder(dataframe, col):
     return chain_vals
 
 # Chain self-feeding fonksiyonu. Dalları çıkaran ana fonksiyon
-def chain(dataframe, col, current_chain, used_list, total):
+def chain(dataframe, total_point, col, current_chain, used_list):
+    current_chain.append(col)
     used_list.append(col)
     arr = positive_finder(dataframe, col)
-    if arr is not None:
-        for i in arr[0]:
-            if i not in used_list:
-                current_chain.append(i)
-                index_ = arr[0].index(i)
-                total += arr[1][index_]
-                print(current_chain)
-                chain(dataframe, i, current_chain, used_list, total)
-                chains.append(current_chain)
-                chains.append(total)
-                current_chain.pop(-1)
-                used_list.pop(-1)
-    else:
-        current_chain.append(None)
-        for j in range(len(dataframe)):
-            if j not in used_list:
-                current_chain.append(j)
-                chains.append(current_chain)
-                chains.append(total)
-                print(current_chain)
-                chain(dataframe, j, current_chain, used_list, total)
-
-
-
-a = 0
-
-# Zincirlerin başlangıç noktası
-def main(dataframe, a):
-    i = 0
-    arr = positive_finder(dataframe, a)
-    total = 0
-    if arr is None:
-        a+=1
-        try:
-            main(dataframe, a)
-        except:
-            print("last element on the list is empty.")
-    else:
-        for col in arr[0]:
-            current_chain = [a, col]
-            used_list = [a]
-            index_ = arr[0].index(col)
-            total += arr[1][index_]
-            print(current_chain)
-            chain(dataframe, col, current_chain, used_list, total)
-
+    temp = 0
+    i=0
+    temp_index = None
+    while i < len(arr[1]):
+        if arr[1][i] > temp and arr[0][i] not in used_list:
+            temp = arr[1][i]
+            temp_index = arr[0][i]
+        i+=1
+    if temp_index == None:
+        return
+    total_point += temp
+    chain(dataframe, total_point, temp_index, current_chain, used_list)
+    return current_chain
 
 # Başlangıç
 df = df_igu
 print(df)
 percentage_dataframe = yuzde_df(df)
+print(percentage_dataframe)
 
-main(percentage_dataframe, a)
+# Zincirlerin başlangıç noktası
+j=0
+while j < len(percentage_dataframe):
+    arr = positive_finder(percentage_dataframe, j)
+    i=0
+    while i < len(arr[0]):
+        used_list = [j]
+        current_chain = [j]
+        total_point = [arr[1][i]]
+        print(chain(percentage_dataframe, total_point, arr[0][i], current_chain, used_list))
+        i+=1
+    j+=1
+
+
+
 
 stop = timeit.default_timer()
 print('Time: ', stop - start)

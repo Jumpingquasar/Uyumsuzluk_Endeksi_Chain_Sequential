@@ -208,6 +208,4 @@ df.to_excel(writer)
 writer.save()
 print("DataFrame is exported successfully to 'converted-to-excel.xlsx' Excel File.")
 stop = timeit.default_timer()
-
-print("Hello world!")
 print('Time: ', stop - start)
