@@ -178,7 +178,10 @@ def main(dataframe, a):
     total = 0
     if arr is None:
         a+=1
-        main(dataframe, a)
+        try:
+            main(dataframe, a)
+        except:
+            print("last element on the list is empty.")
     else:
         for col in arr[0]:
             current_chain = [a, col]
