@@ -11,6 +11,7 @@ counter = 0
 start = timeit.default_timer()
 chains = []
 total = 0
+all_chains = []
 
 pd.options.mode.chained_assignment = None  # default='warn'
 
@@ -146,6 +147,8 @@ def positive_finder(dataframe, col):
 
 # Chain self-feeding fonksiyonu. Dalları çıkaran ana fonksiyon
 def chain(dataframe, total_point, col, current_chain, used_list):
+    if len(used_list) == len(dataframe):
+        return
     current_chain.append(col)
     used_list.append(col)
     arr = positive_finder(dataframe, col)
@@ -159,10 +162,12 @@ def chain(dataframe, total_point, col, current_chain, used_list):
                 temp_index = arr[0][i]
             i+=1
     if temp_index is None:
-        return
+        for val in dataframe:
+            if val not in used_list:
+                chain(dataframe, total_point, val, current_chain, used_list)
     total_point += temp
     chain(dataframe, total_point, temp_index, current_chain, used_list)
-    return current_chain
+    return current_chain, total_point
 
 # Başlangıç
 df = df_igu
@@ -178,14 +183,24 @@ while j < len(percentage_dataframe):
     if arr is None:
         j+=1
         continue
-    i=0
-    while i < len(arr[0]):
-        used_list = [j]
-        current_chain = [j]
-        total_point = [arr[1][i]]
-        print(chain(percentage_dataframe, total_point, arr[0][i], current_chain, used_list))
-        i+=1
+    used_list = []
+    current_chain = []
+    total_point = np.max(arr[1])
+    chainsandvalues = [chain(percentage_dataframe, total_point, j, current_chain, used_list)]
     j+=1
+    print("chain count:", j)
+    all_chains.append(chainsandvalues)
 
+Final = pd.DataFrame(all_chains, columns=['Chains'])
+print(Final)
+
+all_values = []
+i = 0
+while i < len(Final):
+    temp = Final[i]
+    all_values.append(temp[1])
+    i+=1
+
+print(all_values)
 stop = timeit.default_timer()
 print('Time: ', stop - start)

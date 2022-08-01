@@ -3,7 +3,9 @@ import sys
 import pandas as pd
 import os
 import timeit
+import multiprocessing
 counter = 0
+
 
 start = timeit.default_timer()
 
@@ -196,7 +198,7 @@ while True:
         i += 1
         print(main_DF, main_DF.values.sum())
     main_DF = yuzde_DF(df)
-    if sum == main_DF.values.sum():
+    if sum > main_DF.values.sum():
         break
     print(main_DF, main_DF.values.sum())
     sum = main_DF.values.sum()
