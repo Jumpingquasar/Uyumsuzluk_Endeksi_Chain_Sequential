@@ -191,16 +191,17 @@ while j < len(percentage_dataframe):
     print("chain count:", j)
     all_chains.append(chainsandvalues)
 
-Final = pd.DataFrame(all_chains, columns=['Chains'])
-print(Final)
+
 
 all_values = []
 i = 0
-while i < len(Final):
-    temp = Final[i]
+while i < len(all_chains):
+    temp = all_chains[i]
+    temp = temp[0]
     all_values.append(temp[1])
     i+=1
 
-print(all_values)
+print(np.max(all_values))
+print(np.argmax(all_values))
 stop = timeit.default_timer()
 print('Time: ', stop - start)
