@@ -1,0 +1,1240 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Google Maps - gmplot</title>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>
+<script type="text/javascript">
+    function initialize() {
+        var map = new google.maps.Map(document.getElementById("map_canvas"), {
+            zoom: 6,
+            center: new google.maps.LatLng(38.963700, 35.243300)
+        });
+
+        var marker_icon_FF0000 = {
+            url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAiCAYAAACwaJKDAAAABmJLR0QA/wD/AP+gvaeTAAACBklEQVRIia3VzUtUURgH4GdG/AiyZZShtWgXUbSIFtGqRYtqWRLhXyBYf0K6MaJQ2gRtayHtijYpleHKSCgIcRHoIiOSKEzLKea0OOeqTfPlzPzg5Qwz9zz3nXPvPTeneo7gNA4gjyI+Ygbva8z9L2cxi9BHOE+4msY+gliz6biayWE0R7GfMEcoEkJJzRH6CbnY+WiaVxEc6yY8KQOVq8eE7tj1WCV4qIswUyeY1QyhK8JDpWAP1m7vEMzqTkTXkrOZkYOEQoNogXAowiPE2wQuDqC9nktZJu0YSE72XRs2phrsMqup2OkG2vLpRB19DXaZJc3vQHv294Um0e3z8yigsNQkmuYXUMie5/npJtE0fz55YLiXsNHELdUbV2B4+4n2Y/Vmg+itCK4m558MdhBe7hCcJnRGdLDS0ox3E17XCb4h7IngeLX1zuFhD2G5BriytY4Tqmx9WXbh3Tnl99KsLkdwAbtrgVmO4/eDCuCkzd3/TL1glru9hF8lYJFwMoKPdgrCXqzfL0GfR7CIo42gcO9YCXopolONgnAC4W0Cv9l8dVxpBoWFGwmdiOC6Glc8X+3HlKeT6cOzOLzAjyaaBBc602ZzOHZ6vVkQ9kl7Qi6ip1qBwpdrEfwjPnFVU8+awuKrOC7hZ6vQlQ9baM3Ui379HsfVVqKf07jcSvRTGhfrOfgvIP3ECS77BDoAAAAASUVORK5CYII=",
+            labelOrigin: new google.maps.Point(10, 11)
+        };
+
+        var info_marker_0 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.000000, 35.321333),
+            label: "1",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_0 = new google.maps.InfoWindow({
+            content: 'ADANA'
+        });
+        
+        info_marker_0.addListener('click', function() {
+            info_window_0.open(map, info_marker_0);
+        });
+
+        var info_marker_1 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.764167, 38.276167),
+            label: "2",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_1 = new google.maps.InfoWindow({
+            content: 'ADIYAMAN'
+        });
+        
+        info_marker_1.addListener('click', function() {
+            info_window_1.open(map, info_marker_1);
+        });
+
+        var info_marker_2 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.763760, 30.540340),
+            label: "3",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_2 = new google.maps.InfoWindow({
+            content: 'AFYONKARAHÝSAR'
+        });
+        
+        info_marker_2.addListener('click', function() {
+            info_window_2.open(map, info_marker_2);
+        });
+
+        var info_marker_3 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.721667, 43.056667),
+            label: "4",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_3 = new google.maps.InfoWindow({
+            content: 'AÐRI'
+        });
+        
+        info_marker_3.addListener('click', function() {
+            info_window_3.open(map, info_marker_3);
+        });
+
+        var info_marker_4 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.650000, 35.833333),
+            label: "5",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_4 = new google.maps.InfoWindow({
+            content: 'AMASYA'
+        });
+        
+        info_marker_4.addListener('click', function() {
+            info_window_4.open(map, info_marker_4);
+        });
+
+        var info_marker_5 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.920770, 32.854110),
+            label: "6",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_5 = new google.maps.InfoWindow({
+            content: 'ANKARA'
+        });
+        
+        info_marker_5.addListener('click', function() {
+            info_window_5.open(map, info_marker_5);
+        });
+
+        var info_marker_6 = new google.maps.Marker({
+            position: new google.maps.LatLng(36.884140, 30.705630),
+            label: "7",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_6 = new google.maps.InfoWindow({
+            content: 'ANTALYA'
+        });
+        
+        info_marker_6.addListener('click', function() {
+            info_window_6.open(map, info_marker_6);
+        });
+
+        var info_marker_7 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.183333, 41.816667),
+            label: "8",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_7 = new google.maps.InfoWindow({
+            content: 'ARTVÝN'
+        });
+        
+        info_marker_7.addListener('click', function() {
+            info_window_7.open(map, info_marker_7);
+        });
+
+        var info_marker_8 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.844400, 27.845800),
+            label: "9",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_8 = new google.maps.InfoWindow({
+            content: 'AYDIN'
+        });
+        
+        info_marker_8.addListener('click', function() {
+            info_window_8.open(map, info_marker_8);
+        });
+
+        var info_marker_9 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.648369, 27.882610),
+            label: "10",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_9 = new google.maps.InfoWindow({
+            content: 'BALIKESÝR'
+        });
+        
+        info_marker_9.addListener('click', function() {
+            info_window_9.open(map, info_marker_9);
+        });
+
+        var info_marker_10 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.150131, 29.983061),
+            label: "11",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_10 = new google.maps.InfoWindow({
+            content: 'BÝLECÝK'
+        });
+        
+        info_marker_10.addListener('click', function() {
+            info_window_10.open(map, info_marker_10);
+        });
+
+        var info_marker_11 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.885349, 40.498291),
+            label: "12",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_11 = new google.maps.InfoWindow({
+            content: 'BÝNGÖL'
+        });
+        
+        info_marker_11.addListener('click', function() {
+            info_window_11.open(map, info_marker_11);
+        });
+
+        var info_marker_12 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.400000, 42.116667),
+            label: "13",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_12 = new google.maps.InfoWindow({
+            content: 'BÝTLÝS'
+        });
+        
+        info_marker_12.addListener('click', function() {
+            info_window_12.open(map, info_marker_12);
+        });
+
+        var info_marker_13 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.739479, 31.611561),
+            label: "14",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_13 = new google.maps.InfoWindow({
+            content: 'BOLU'
+        });
+        
+        info_marker_13.addListener('click', function() {
+            info_window_13.open(map, info_marker_13);
+        });
+
+        var info_marker_14 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.726909, 30.288876),
+            label: "15",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_14 = new google.maps.InfoWindow({
+            content: 'BURDUR'
+        });
+        
+        info_marker_14.addListener('click', function() {
+            info_window_14.open(map, info_marker_14);
+        });
+
+        var info_marker_15 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.182570, 29.066870),
+            label: "16",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_15 = new google.maps.InfoWindow({
+            content: 'BURSA'
+        });
+        
+        info_marker_15.addListener('click', function() {
+            info_window_15.open(map, info_marker_15);
+        });
+
+        var info_marker_16 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.155312, 26.414160),
+            label: "17",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_16 = new google.maps.InfoWindow({
+            content: 'ÇANAKKALE'
+        });
+        
+        info_marker_16.addListener('click', function() {
+            info_window_16.open(map, info_marker_16);
+        });
+
+        var info_marker_17 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.600000, 33.616667),
+            label: "18",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_17 = new google.maps.InfoWindow({
+            content: 'ÇANKIRI'
+        });
+        
+        info_marker_17.addListener('click', function() {
+            info_window_17.open(map, info_marker_17);
+        });
+
+        var info_marker_18 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.550556, 34.955556),
+            label: "19",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_18 = new google.maps.InfoWindow({
+            content: 'ÇORUM'
+        });
+        
+        info_marker_18.addListener('click', function() {
+            info_window_18.open(map, info_marker_18);
+        });
+
+        var info_marker_19 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.776520, 29.086390),
+            label: "20",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_19 = new google.maps.InfoWindow({
+            content: 'DENÝZLÝ'
+        });
+        
+        info_marker_19.addListener('click', function() {
+            info_window_19.open(map, info_marker_19);
+        });
+
+        var info_marker_20 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.914410, 40.230629),
+            label: "21",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_20 = new google.maps.InfoWindow({
+            content: 'DÝYARBAKIR'
+        });
+        
+        info_marker_20.addListener('click', function() {
+            info_window_20.open(map, info_marker_20);
+        });
+
+        var info_marker_21 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.666667, 26.566667),
+            label: "22",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_21 = new google.maps.InfoWindow({
+            content: 'EDÝRNE'
+        });
+        
+        info_marker_21.addListener('click', function() {
+            info_window_21.open(map, info_marker_21);
+        });
+
+        var info_marker_22 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.680969, 39.226398),
+            label: "23",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_22 = new google.maps.InfoWindow({
+            content: 'ELAZIÐ'
+        });
+        
+        info_marker_22.addListener('click', function() {
+            info_window_22.open(map, info_marker_22);
+        });
+
+        var info_marker_23 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.750000, 39.500000),
+            label: "24",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_23 = new google.maps.InfoWindow({
+            content: 'ERZÝNCAN'
+        });
+        
+        info_marker_23.addListener('click', function() {
+            info_window_23.open(map, info_marker_23);
+        });
+
+        var info_marker_24 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.904319, 41.267885),
+            label: "25",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_24 = new google.maps.InfoWindow({
+            content: 'ERZURUM'
+        });
+        
+        info_marker_24.addListener('click', function() {
+            info_window_24.open(map, info_marker_24);
+        });
+
+        var info_marker_25 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.784302, 30.519220),
+            label: "26",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_25 = new google.maps.InfoWindow({
+            content: 'ESKÝÞEHÝR'
+        });
+        
+        info_marker_25.addListener('click', function() {
+            info_window_25.open(map, info_marker_25);
+        });
+
+        var info_marker_26 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.066220, 37.383320),
+            label: "27",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_26 = new google.maps.InfoWindow({
+            content: 'GAZÝANTEP'
+        });
+        
+        info_marker_26.addListener('click', function() {
+            info_window_26.open(map, info_marker_26);
+        });
+
+        var info_marker_27 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.912811, 38.389530),
+            label: "28",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_27 = new google.maps.InfoWindow({
+            content: 'GÝRESUN'
+        });
+        
+        info_marker_27.addListener('click', function() {
+            info_window_27.open(map, info_marker_27);
+        });
+
+        var info_marker_28 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.460278, 39.481389),
+            label: "29",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_28 = new google.maps.InfoWindow({
+            content: 'GÜMÜÞHANE'
+        });
+        
+        info_marker_28.addListener('click', function() {
+            info_window_28.open(map, info_marker_28);
+        });
+
+        var info_marker_29 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.583333, 43.733333),
+            label: "30",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_29 = new google.maps.InfoWindow({
+            content: 'HAKKARÝ'
+        });
+        
+        info_marker_29.addListener('click', function() {
+            info_window_29.open(map, info_marker_29);
+        });
+
+        var info_marker_30 = new google.maps.Marker({
+            position: new google.maps.LatLng(36.401849, 36.349810),
+            label: "31",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_30 = new google.maps.InfoWindow({
+            content: 'HATAY'
+        });
+        
+        info_marker_30.addListener('click', function() {
+            info_window_30.open(map, info_marker_30);
+        });
+
+        var info_marker_31 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.766667, 30.550000),
+            label: "32",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_31 = new google.maps.InfoWindow({
+            content: 'ISPARTA'
+        });
+        
+        info_marker_31.addListener('click', function() {
+            info_window_31.open(map, info_marker_31);
+        });
+
+        var info_marker_32 = new google.maps.Marker({
+            position: new google.maps.LatLng(36.800000, 34.633333),
+            label: "33",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_32 = new google.maps.InfoWindow({
+            content: 'MERSÝN(ÝÇEL)'
+        });
+        
+        info_marker_32.addListener('click', function() {
+            info_window_32.open(map, info_marker_32);
+        });
+
+        var info_marker_33 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.005270, 28.976960),
+            label: "34",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_33 = new google.maps.InfoWindow({
+            content: 'ÝSTANBUL'
+        });
+        
+        info_marker_33.addListener('click', function() {
+            info_window_33.open(map, info_marker_33);
+        });
+
+        var info_marker_34 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.418850, 27.128720),
+            label: "35",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_34 = new google.maps.InfoWindow({
+            content: 'ÝZMÝR'
+        });
+        
+        info_marker_34.addListener('click', function() {
+            info_window_34.open(map, info_marker_34);
+        });
+
+        var info_marker_35 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.592670, 43.077831),
+            label: "36",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_35 = new google.maps.InfoWindow({
+            content: 'KARS'
+        });
+        
+        info_marker_35.addListener('click', function() {
+            info_window_35.open(map, info_marker_35);
+        });
+
+        var info_marker_36 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.388710, 33.782730),
+            label: "37",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_36 = new google.maps.InfoWindow({
+            content: 'KASTAMONU'
+        });
+        
+        info_marker_36.addListener('click', function() {
+            info_window_36.open(map, info_marker_36);
+        });
+
+        var info_marker_37 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.733333, 35.483333),
+            label: "38",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_37 = new google.maps.InfoWindow({
+            content: 'KAYSERÝ'
+        });
+        
+        info_marker_37.addListener('click', function() {
+            info_window_37.open(map, info_marker_37);
+        });
+
+        var info_marker_38 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.733333, 27.216667),
+            label: "39",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_38 = new google.maps.InfoWindow({
+            content: 'KIRKLARELÝ'
+        });
+        
+        info_marker_38.addListener('click', function() {
+            info_window_38.open(map, info_marker_38);
+        });
+
+        var info_marker_39 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.150000, 34.166667),
+            label: "40",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_39 = new google.maps.InfoWindow({
+            content: 'KIRÞEHÝR'
+        });
+        
+        info_marker_39.addListener('click', function() {
+            info_window_39.open(map, info_marker_39);
+        });
+
+        var info_marker_40 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.853270, 29.881520),
+            label: "41",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_40 = new google.maps.InfoWindow({
+            content: 'KOCAELÝ'
+        });
+        
+        info_marker_40.addListener('click', function() {
+            info_window_40.open(map, info_marker_40);
+        });
+
+        var info_marker_41 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.866667, 32.483333),
+            label: "42",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_41 = new google.maps.InfoWindow({
+            content: 'KONYA'
+        });
+        
+        info_marker_41.addListener('click', function() {
+            info_window_41.open(map, info_marker_41);
+        });
+
+        var info_marker_42 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.416667, 29.983333),
+            label: "43",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_42 = new google.maps.InfoWindow({
+            content: 'KÜTAHYA'
+        });
+        
+        info_marker_42.addListener('click', function() {
+            info_window_42.open(map, info_marker_42);
+        });
+
+        var info_marker_43 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.355190, 38.309460),
+            label: "44",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_43 = new google.maps.InfoWindow({
+            content: 'MALATYA'
+        });
+        
+        info_marker_43.addListener('click', function() {
+            info_window_43.open(map, info_marker_43);
+        });
+
+        var info_marker_44 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.619099, 27.428921),
+            label: "45",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_44 = new google.maps.InfoWindow({
+            content: 'MANÝSA'
+        });
+        
+        info_marker_44.addListener('click', function() {
+            info_window_44.open(map, info_marker_44);
+        });
+
+        var info_marker_45 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.583333, 36.933333),
+            label: "46",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_45 = new google.maps.InfoWindow({
+            content: 'KAHRAMANMARAÞ'
+        });
+        
+        info_marker_45.addListener('click', function() {
+            info_window_45.open(map, info_marker_45);
+        });
+
+        var info_marker_46 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.312236, 40.735112),
+            label: "47",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_46 = new google.maps.InfoWindow({
+            content: 'MARDÝN'
+        });
+        
+        info_marker_46.addListener('click', function() {
+            info_window_46.open(map, info_marker_46);
+        });
+
+        var info_marker_47 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.215278, 28.363611),
+            label: "48",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_47 = new google.maps.InfoWindow({
+            content: 'MUÐLA'
+        });
+        
+        info_marker_47.addListener('click', function() {
+            info_window_47.open(map, info_marker_47);
+        });
+
+        var info_marker_48 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.743293, 41.506482),
+            label: "49",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_48 = new google.maps.InfoWindow({
+            content: 'MUÞ'
+        });
+        
+        info_marker_48.addListener('click', function() {
+            info_window_48.open(map, info_marker_48);
+        });
+
+        var info_marker_49 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.624420, 34.723969),
+            label: "50",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_49 = new google.maps.InfoWindow({
+            content: 'NEVÞEHÝR'
+        });
+        
+        info_marker_49.addListener('click', function() {
+            info_window_49.open(map, info_marker_49);
+        });
+
+        var info_marker_50 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.966667, 34.683333),
+            label: "51",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_50 = new google.maps.InfoWindow({
+            content: 'NÝÐDE'
+        });
+        
+        info_marker_50.addListener('click', function() {
+            info_window_50.open(map, info_marker_50);
+        });
+
+        var info_marker_51 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.983333, 37.883333),
+            label: "52",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_51 = new google.maps.InfoWindow({
+            content: 'ORDU'
+        });
+        
+        info_marker_51.addListener('click', function() {
+            info_window_51.open(map, info_marker_51);
+        });
+
+        var info_marker_52 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.020050, 40.523449),
+            label: "53",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_52 = new google.maps.InfoWindow({
+            content: 'RÝZE'
+        });
+        
+        info_marker_52.addListener('click', function() {
+            info_window_52.open(map, info_marker_52);
+        });
+
+        var info_marker_53 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.756879, 30.378138),
+            label: "54",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_53 = new google.maps.InfoWindow({
+            content: 'SAKARYA'
+        });
+        
+        info_marker_53.addListener('click', function() {
+            info_window_53.open(map, info_marker_53);
+        });
+
+        var info_marker_54 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.292782, 36.331280),
+            label: "55",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_54 = new google.maps.InfoWindow({
+            content: 'SAMSUN'
+        });
+        
+        info_marker_54.addListener('click', function() {
+            info_window_54.open(map, info_marker_54);
+        });
+
+        var info_marker_55 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.944290, 41.932880),
+            label: "56",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_55 = new google.maps.InfoWindow({
+            content: 'SÝÝRT'
+        });
+        
+        info_marker_55.addListener('click', function() {
+            info_window_55.open(map, info_marker_55);
+        });
+
+        var info_marker_56 = new google.maps.Marker({
+            position: new google.maps.LatLng(42.026422, 35.155074),
+            label: "57",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_56 = new google.maps.InfoWindow({
+            content: 'SÝNOP'
+        });
+        
+        info_marker_56.addListener('click', function() {
+            info_window_56.open(map, info_marker_56);
+        });
+
+        var info_marker_57 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.747662, 37.017879),
+            label: "58",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_57 = new google.maps.InfoWindow({
+            content: 'SÝVAS'
+        });
+        
+        info_marker_57.addListener('click', function() {
+            info_window_57.open(map, info_marker_57);
+        });
+
+        var info_marker_58 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.983333, 27.516667),
+            label: "59",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_58 = new google.maps.InfoWindow({
+            content: 'TEKÝRDAÐ'
+        });
+        
+        info_marker_58.addListener('click', function() {
+            info_window_58.open(map, info_marker_58);
+        });
+
+        var info_marker_59 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.316667, 36.550000),
+            label: "60",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_59 = new google.maps.InfoWindow({
+            content: 'TOKAT'
+        });
+        
+        info_marker_59.addListener('click', function() {
+            info_window_59.open(map, info_marker_59);
+        });
+
+        var info_marker_60 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.000000, 39.733333),
+            label: "61",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_60 = new google.maps.InfoWindow({
+            content: 'TRABZON'
+        });
+        
+        info_marker_60.addListener('click', function() {
+            info_window_60.open(map, info_marker_60);
+        });
+
+        var info_marker_61 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.107987, 39.540167),
+            label: "62",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_61 = new google.maps.InfoWindow({
+            content: 'TUNCELÝ'
+        });
+        
+        info_marker_61.addListener('click', function() {
+            info_window_61.open(map, info_marker_61);
+        });
+
+        var info_marker_62 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.150000, 38.800000),
+            label: "63",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_62 = new google.maps.InfoWindow({
+            content: 'ÞANLIURFA'
+        });
+        
+        info_marker_62.addListener('click', function() {
+            info_window_62.open(map, info_marker_62);
+        });
+
+        var info_marker_63 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.682301, 29.408190),
+            label: "64",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_63 = new google.maps.InfoWindow({
+            content: 'UÞAK'
+        });
+        
+        info_marker_63.addListener('click', function() {
+            info_window_63.open(map, info_marker_63);
+        });
+
+        var info_marker_64 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.494167, 43.380000),
+            label: "65",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_64 = new google.maps.InfoWindow({
+            content: 'VAN'
+        });
+        
+        info_marker_64.addListener('click', function() {
+            info_window_64.open(map, info_marker_64);
+        });
+
+        var info_marker_65 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.820000, 34.804444),
+            label: "66",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_65 = new google.maps.InfoWindow({
+            content: 'YOZGAT'
+        });
+        
+        info_marker_65.addListener('click', function() {
+            info_window_65.open(map, info_marker_65);
+        });
+
+        var info_marker_66 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.456409, 31.798731),
+            label: "67",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_66 = new google.maps.InfoWindow({
+            content: 'ZONGULDAK'
+        });
+        
+        info_marker_66.addListener('click', function() {
+            info_window_66.open(map, info_marker_66);
+        });
+
+        var info_marker_67 = new google.maps.Marker({
+            position: new google.maps.LatLng(38.368690, 34.036980),
+            label: "68",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_67 = new google.maps.InfoWindow({
+            content: 'AKSARAY'
+        });
+        
+        info_marker_67.addListener('click', function() {
+            info_window_67.open(map, info_marker_67);
+        });
+
+        var info_marker_68 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.255169, 40.224880),
+            label: "69",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_68 = new google.maps.InfoWindow({
+            content: 'BAYBURT'
+        });
+        
+        info_marker_68.addListener('click', function() {
+            info_window_68.open(map, info_marker_68);
+        });
+
+        var info_marker_69 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.175930, 33.228748),
+            label: "70",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_69 = new google.maps.InfoWindow({
+            content: 'KARAMAN'
+        });
+        
+        info_marker_69.addListener('click', function() {
+            info_window_69.open(map, info_marker_69);
+        });
+
+        var info_marker_70 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.846821, 33.515251),
+            label: "71",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_70 = new google.maps.InfoWindow({
+            content: 'KIRIKKALE'
+        });
+        
+        info_marker_70.addListener('click', function() {
+            info_window_70.open(map, info_marker_70);
+        });
+
+        var info_marker_71 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.881168, 41.135090),
+            label: "72",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_71 = new google.maps.InfoWindow({
+            content: 'BATMAN'
+        });
+        
+        info_marker_71.addListener('click', function() {
+            info_window_71.open(map, info_marker_71);
+        });
+
+        var info_marker_72 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.516389, 42.461111),
+            label: "73",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_72 = new google.maps.InfoWindow({
+            content: 'ÞIRNAK'
+        });
+        
+        info_marker_72.addListener('click', function() {
+            info_window_72.open(map, info_marker_72);
+        });
+
+        var info_marker_73 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.634444, 32.337500),
+            label: "74",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_73 = new google.maps.InfoWindow({
+            content: 'BARTIN'
+        });
+        
+        info_marker_73.addListener('click', function() {
+            info_window_73.open(map, info_marker_73);
+        });
+
+        var info_marker_74 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.110481, 42.702171),
+            label: "75",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_74 = new google.maps.InfoWindow({
+            content: 'ARDAHAN'
+        });
+        
+        info_marker_74.addListener('click', function() {
+            info_window_74.open(map, info_marker_74);
+        });
+
+        var info_marker_75 = new google.maps.Marker({
+            position: new google.maps.LatLng(39.916667, 44.033333),
+            label: "76",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_75 = new google.maps.InfoWindow({
+            content: 'IÐDIR'
+        });
+        
+        info_marker_75.addListener('click', function() {
+            info_window_75.open(map, info_marker_75);
+        });
+
+        var info_marker_76 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.650000, 29.266667),
+            label: "77",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_76 = new google.maps.InfoWindow({
+            content: 'YALOVA'
+        });
+        
+        info_marker_76.addListener('click', function() {
+            info_window_76.open(map, info_marker_76);
+        });
+
+        var info_marker_77 = new google.maps.Marker({
+            position: new google.maps.LatLng(41.200000, 32.633333),
+            label: "78",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_77 = new google.maps.InfoWindow({
+            content: 'KARABÜK'
+        });
+        
+        info_marker_77.addListener('click', function() {
+            info_window_77.open(map, info_marker_77);
+        });
+
+        var info_marker_78 = new google.maps.Marker({
+            position: new google.maps.LatLng(36.718399, 37.121220),
+            label: "79",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_78 = new google.maps.InfoWindow({
+            content: 'KÝLÝS'
+        });
+        
+        info_marker_78.addListener('click', function() {
+            info_window_78.open(map, info_marker_78);
+        });
+
+        var info_marker_79 = new google.maps.Marker({
+            position: new google.maps.LatLng(37.068050, 36.261589),
+            label: "80",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_79 = new google.maps.InfoWindow({
+            content: 'OSMANÝYE'
+        });
+        
+        info_marker_79.addListener('click', function() {
+            info_window_79.open(map, info_marker_79);
+        });
+
+        var info_marker_80 = new google.maps.Marker({
+            position: new google.maps.LatLng(40.843849, 31.156540),
+            label: "81",
+            icon: marker_icon_FF0000,
+            map: map
+        });
+
+        var info_window_80 = new google.maps.InfoWindow({
+            content: 'DÜZCE'
+        });
+        
+        info_marker_80.addListener('click', function() {
+            info_window_80.open(map, info_marker_80);
+        });
+
+    }
+</script>
+</head>
+<body style="margin:0px; padding:0px;" onload="initialize()">
+    <div id="map_canvas" style="width: 100%; height: 100%;" />
+</body>
+</html>

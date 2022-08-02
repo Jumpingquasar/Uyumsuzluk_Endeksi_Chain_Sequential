@@ -6,6 +6,7 @@ import timeit
 import numpy as np
 import multiprocessing
 
+sys.setrecursionlimit(15000)
 print("Number of cores:", multiprocessing.cpu_count())
 counter = 0
 start = timeit.default_timer()
