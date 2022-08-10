@@ -37,15 +37,17 @@ diger_kisi = {
 }
 
 # Çalışan veri tablosunu çek
-df_orsa = pd.read_excel("Lib/Excel/orsa.xlsx")
+df_orsa = pd.read_excel("Lib/Excel/TezMedikal-oncesi.xlsx")
 # İller arası mesafe tablosunu çek
 df_distance = pd.read_excel("Lib/Excel/ilmesafe.xlsx")
 
 # Çalışan veri tablosundan görevi doktor olanları ayır farklı dataframe'e ata
-df_doktorlar = df_orsa[df_orsa["SEVİYE"] == "BOŞ"]
+df_doktorlar1 = df_orsa[df_orsa["Sertifika"] == "İşyeri Hekimi"]
+df_doktorlar2 = df_orsa[df_orsa["Sertifika"] == "Diğer Sağlık Personeli"]
+frames = [df_doktorlar1, df_doktorlar2]
+df_doktorlar = pd.concat(frames)
 # Çalışan veri tablosundan görevi iş güvenlik uzmanı olanları ayır farklı dataframe'e ata
-df_igu = df_orsa[df_orsa["SEVİYE"] != "BOŞ"]
-
+df_igu = df_orsa[df_orsa["Sertifika"] != "İşyeri Hekimi"]
 
 # Kişi index'ine göre saat puanı hesabı
 def saat_hesabi(kisi):
@@ -74,7 +76,19 @@ def mesafe_hesabi(kisi):
 # Kişi index'ine göre uzmanlık puanı hesabı
 def uzmanlik_hesabi(kisi):
     seviye = kisi["seviye"]
+    if seviye == "İş Güvenliği Uzmanı (Tehlikeli Sınıf-A)":
+        seviye = 1
+    elif seviye == "İş Güvenliği Uzmanı (Tehlikeli Sınıf-B)":
+        seviye = 2
+    elif seviye == "İş Güvenliği Uzmanı (Tehlikeli Sınıf-C)":
+        seviye = 3
     isyeri_seviye = kisi["isyeri_seviye"]
+    if isyeri_seviye == "A SINIFI UZMAN":
+        isyeri_seviye = 1
+    elif isyeri_seviye == "B SINIFI UZMAN":
+        isyeri_seviye = 2
+    elif isyeri_seviye == "C SINIFI UZMAN":
+        isyeri_seviye = 3
     if type(seviye) != int or type(isyeri_seviye) != int:
         return 500
     fark = seviye - isyeri_seviye
@@ -91,10 +105,11 @@ def puan_hesabi(kisi):
 
 
 # diger_kisi'ye ana_kisi'nin "gorev_yeri" ve "isyeri_seviye"'sini verirsek çıkan yüzdelik puan hesabı
-def puan_karsilastirma(ana_kisi_f, diger_kisi_f):
+def puan_karsilastirma(ana_kisi_f, diger_kisi_f, Doktor):
     onceki_puan = puan_hesabi(diger_kisi_f)
     diger_kisi_f["gorev_yeri"] = ana_kisi_f["gorev_yeri"]
-    diger_kisi_f["isyeri_seviye"] = ana_kisi_f["isyeri_seviye"]
+    if Doktor is not True:
+        diger_kisi_f["isyeri_seviye"] = ana_kisi_f["isyeri_seviye"]
     sonraki_puan = puan_hesabi(diger_kisi_f)
     return (sonraki_puan - onceki_puan) * 100 / onceki_puan
 
@@ -107,22 +122,25 @@ def yuzde_df(p_table):
     while kisi_index < len(p_table):
         karsilastirma_list = []
         kisi_index_ = 0
-        ana_kisi["ikamet_yeri"] = p_table.iloc[kisi_index]["İKAMETİ"]
-        ana_kisi["gorev_yeri"] = p_table.iloc[kisi_index]["GÖREV YERİ"]
-        ana_kisi["seviye"] = p_table.iloc[kisi_index]["SEVİYE"]
-        ana_kisi["isyeri_seviye"] = p_table.iloc[kisi_index]["İŞYERİ"]
-        ana_kisi["kisi_saat"] = p_table.iloc[kisi_index]["ÇALIŞILAN SAAT"]
-        ana_kisi["gorevi"] = p_table.iloc[kisi_index]["GÖREVİ"]
+        ana_kisi["ikamet_yeri"] = p_table.iloc[kisi_index]["İL"]
+        ana_kisi["gorev_yeri"] = p_table.iloc[kisi_index]["SGK İL İSİM"]
+        ana_kisi["seviye"] = p_table.iloc[kisi_index]["Sertifika"]
+        ana_kisi["isyeri_seviye"] = p_table.iloc[kisi_index]["TEHLİKE SINIFI"]
+        ana_kisi["kisi_saat"] = p_table.iloc[kisi_index]["TOPLAM ATAMA SÜRESİ (sa)"]
+        ana_kisi["gorevi"] = p_table.iloc[kisi_index]["HİZMET TİPİ"]
         kisi_index += 1
         while kisi_index_ < len(p_table):
-            diger_kisi["ikamet_yeri"] = p_table.iloc[kisi_index_]["İKAMETİ"]
-            diger_kisi["gorev_yeri"] = p_table.iloc[kisi_index_]["GÖREV YERİ"]
-            diger_kisi["seviye"] = p_table.iloc[kisi_index_]["SEVİYE"]
-            diger_kisi["isyeri_seviye"] = p_table.iloc[kisi_index_]["İŞYERİ"]
-            diger_kisi["kisi_saat"] = p_table.iloc[kisi_index_]["ÇALIŞILAN SAAT"]
-            diger_kisi["gorevi"] = p_table.iloc[kisi_index_]["GÖREVİ"]
+            Doktor = False
+            diger_kisi["ikamet_yeri"] = p_table.iloc[kisi_index_]["İL"]
+            diger_kisi["gorev_yeri"] = p_table.iloc[kisi_index_]["SGK İL İSİM"]
+            diger_kisi["seviye"] = p_table.iloc[kisi_index_]["Sertifika"]
+            diger_kisi["isyeri_seviye"] = p_table.iloc[kisi_index_]["TEHLİKE SINIFI"]
+            diger_kisi["kisi_saat"] = p_table.iloc[kisi_index_]["TOPLAM ATAMA SÜRESİ (sa)"]
+            diger_kisi["gorevi"] = p_table.iloc[kisi_index_]["HİZMET TİPİ"]
             kisi_index_ += 1
-            karsilastirma_list.append(puan_karsilastirma(ana_kisi, diger_kisi))
+            if diger_kisi["seviye"] == "İşyeri Hekimi" or diger_kisi["seviye"] == "Diğer Sağlık Personeli":
+                Doktor = True
+            karsilastirma_list.append(puan_karsilastirma(ana_kisi, diger_kisi, Doktor))
             counter += 1
             if counter % 1000 == 0:
                 print("Total Operations =", counter)
@@ -171,38 +189,39 @@ def chain(dataframe, total_point, col, current_chain, used_list):
     return current_chain, total_point
 
 # Başlangıç
-df = df_igu
-print(df)
-percentage_dataframe = yuzde_df(df)
-print(percentage_dataframe)
-
-# Zincirlerin başlangıç noktası
-j=0
-max_change = 0
-while j < len(percentage_dataframe):
-    arr = positive_finder(percentage_dataframe, j)
-    if arr is None:
-        j+=1
-        continue
-    used_list = []
-    current_chain = []
-    total_point = np.max(arr[1])
-    chainsandvalues = [chain(percentage_dataframe, total_point, j, current_chain, used_list)]
-    j+=1
-    print("chain count:", j)
-    all_chains.append(chainsandvalues)
-
-
-
-all_values = []
-i = 0
-while i < len(all_chains):
-    temp = all_chains[i]
-    temp = temp[0]
-    all_values.append(temp[1])
-    i+=1
-
-print(np.max(all_values))
-print(np.argmax(all_values))
-stop = timeit.default_timer()
-print('Time: ', stop - start)
+for df in [df_igu, df_doktorlar]:
+    print(df)
+    percentage_dataframe = yuzde_df(df)
+    print(percentage_dataframe)
+    percentage_dataframe.to_csv()
+#
+# # Zincirlerin başlangıç noktası
+# j=0
+# max_change = 0
+# while j < len(percentage_dataframe):
+#     arr = positive_finder(percentage_dataframe, j)
+#     if arr is None:
+#         j+=1
+#         continue
+#     used_list = []
+#     current_chain = []
+#     total_point = np.max(arr[1])
+#     chainsandvalues = [chain(percentage_dataframe, total_point, j, current_chain, used_list)]
+#     j+=1
+#     print("chain count:", j)
+#     all_chains.append(chainsandvalues)
+#
+#
+#
+# all_values = []
+# i = 0
+# while i < len(all_chains):
+#     temp = all_chains[i]
+#     temp = temp[0]
+#     all_values.append(temp[1])
+#     i+=1
+#
+# print(np.max(all_values))
+# print(np.argmax(all_values))
+# stop = timeit.default_timer()
+# print('Time: ', stop - start)
